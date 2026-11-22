@@ -1,0 +1,37 @@
+<project name="Task Manager" default="jar" basedir=".">
+    <target name="clean"><delete dir="build"/></target>
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" release="17" encoding="UTF-8" includeantruntime="false"/>
+    </target>
+    <target name="jar" depends="compile">
+        <jar destfile="build/task-manager.jar" basedir="build/classes">
+            <manifest><attribute name="Main-Class" value="oel.tasks.TaskManagerApp"/></manifest>
+        </jar>
+    </target>
+    <target name="run" depends="compile">
+        <java classname="oel.tasks.TaskManagerApp" classpath="build/classes" fork="true" failonerror="true"/>
+    </target>
+    <target name="debug" depends="compile" if="netbeans.home">
+        <nbjpdastart name="Task Manager" addressproperty="debug.address" transport="dt_socket">
+            <classpath path="build/classes"/>
+        </nbjpdastart>
+        <java classname="oel.tasks.TaskManagerApp" classpath="build/classes" fork="true" failonerror="true">
+            <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=n,address=${debug.address}"/>
+        </java>
+    </target>
+    <target name="test" depends="compile">
+        <mkdir dir="build/test"/>
+        <javac srcdir="test" destdir="build/test" classpath="build/classes" release="17" encoding="UTF-8" includeantruntime="false"/>
+        <java classname="oel.tasks.TaskManagerTest" fork="true" failonerror="true">
+            <classpath><pathelement location="build/classes"/><pathelement location="build/test"/></classpath>
+        </java>
+    </target>
+    <target name="javadoc">
+        <mkdir dir="docs/api"/>
+        <javadoc sourcepath="src" packagenames="oel.tasks" destdir="docs/api"
+                 author="true" private="true" encoding="UTF-8" charset="UTF-8"
+                 windowtitle="Task Manager API" doctitle="Task Manager API"
+                 additionalparam="-Xdoclint:all -notimestamp" failonerror="true"/>
+    </target>
+</project>
