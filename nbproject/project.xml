@@ -2,7 +2,7 @@
 <project xmlns="http://www.netbeans.org/ns/project/1">
     <type>org.netbeans.modules.ant.freeform</type>
     <configuration>
-        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/2">
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
             <name>Task Manager</name>
             <folders>
                 <source-folder><label>Sources</label><type>java</type><location>src</location></source-folder>
@@ -29,9 +29,10 @@
                 </context-menu>
             </view>
         </general-data>
-        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/3">
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/5">
             <compilation-unit><package-root>src</package-root><built-to>build/classes</built-to><source-level>17</source-level></compilation-unit>
             <compilation-unit><package-root>test</package-root><unit-tests/><classpath mode="compile">build/classes</classpath><built-to>build/test</built-to><source-level>17</source-level></compilation-unit>
         </java-data>
     </configuration>
 </project>
+
